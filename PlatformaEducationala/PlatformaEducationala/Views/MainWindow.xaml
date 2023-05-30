@@ -1,0 +1,94 @@
+﻿<Window x:Class="PlatformaEducationala.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctx="clr-namespace:PlatformaEducationala.ViewModels"
+        mc:Ignorable="d"
+        Title="Platforma Educationala" Height="350" Width="450">
+    <Window.DataContext>
+        <ctx:MainWindowVM/>
+    </Window.DataContext>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Height="30" FontSize="15" FontWeight="Bold">
+            <Menu.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#d39569" Offset="0.528"/>
+                    <GradientStop Color="#d8a079" Offset="0.01"/>
+                    <GradientStop Color="#dfb190" Offset="1"/>
+                    <GradientStop Color="#cf8a59" Offset="1"/>
+                </LinearGradientBrush>
+            </Menu.Background>
+            <MenuItem Header="Administrator">
+                <MenuItem.Icon>
+                    <Image Source="/Images/administrator.png" Width="20" Height="20"/>
+                </MenuItem.Icon>
+                <MenuItem Header="Operatii CRUD">
+                    <MenuItem Header="Elevi" Click="eleviMenuItem_Click"/>
+                    <MenuItem Header="Profesori" Click="profesoriMenuItem_Click"/>
+                    <MenuItem Header="Absente" Click="absenteMenuItem_Click"/>
+                    <MenuItem Header="Clase" Click="claseMenuItem_Click"/>
+                    <MenuItem Header="Materii" Click="materiiMenuItem_Click"/>
+                    <MenuItem Header="Note" Click="noteMenuItem_Click"/>
+                    <MenuItem Header="Specializari" Click="specializariMenuItem_Click"/>
+                    <MenuItem Header="Medii" Click="mediiMenuItem_Click"/>
+                    <MenuItem Header="Materiale" Click="materialeMenuItem_Click"/>
+                </MenuItem>
+                <MenuItem Header="Clasa - Specializare - Materie" Click="clasaSpecializareMaterieMenuItem_Click"/>
+                <MenuItem Header="Profesor - Materie - Clasa" Click="profesorMaterieClasaMenuItem_Click"/>
+                <MenuItem Header="Elev - Clasa - Specializare" Click="elevAnStudiuSpecializareMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Profesor">
+                <MenuItem.Icon>
+                    <Image Source="/Images/profesor.jpg" Width="20" Height="20"/>
+                </MenuItem.Icon>
+                <MenuItem Header="Absente" Click="profesoriAbsenteMenuItem_Click"/>
+                <MenuItem Header="Note" Click="profesoriNoteMenuItem_Click"/>
+                <MenuItem Header="Material Didactic" Click="profesoriMaterialeMenuItem_Click"/>
+                <MenuItem Header="Medii" Click="profesoriMediiMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Diriginte">
+                <MenuItem.Icon>
+                    <Image Source="/Images/diriginte.jpg" Width="20" Height="20"/>
+                </MenuItem.Icon>
+                <MenuItem Header="Motivare Absente" Click="dirigintiMotivareAbsenteMenuItem_Click"/>
+                <MenuItem Header="Vizualizare Absente" Click="dirigintiAbsenteMenuItem_Click"/>
+                <MenuItem Header="Vizualizare Absente Nemotivate" Click="dirigintiAbsenteNemotivateMenuItem_Click"/>
+                <MenuItem Header="Vizualizare Medii Finale" Click="dirigintiMediiMenuItem_Click"/>
+                <MenuItem Header="Vizualizare Ierarhie" Click="dirigintiIerarhieMenuItem_Click"/>
+                <MenuItem Header="Vizualizare Premianti" Click="dirigintiPremiantiMenuItem_Click"/>
+                <MenuItem Header="Afisare Elevi in Situatie de Exmatriculare" Click="dirigintiExmatriculareMenuItem_Click"/>
+            </MenuItem>
+            <MenuItem Header="Elev">
+                <MenuItem.Icon>
+                    <Image Source="/Images/elev.jpg" Width="20" Height="20"/>
+                </MenuItem.Icon>
+                <MenuItem Header="Material Didactic" Click="eleviMaterialeMenuItem_Click"/>
+                <MenuItem Header="Note" Click="eleviNoteMenuItem_Click"/>
+                <MenuItem Header="Absente" Click="eleviAbsenteMenuItem_Click"/>
+                <MenuItem Header="Medii" Click="eleviMediiMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+        <WrapPanel>
+            <WrapPanel.Background>
+                <SolidColorBrush Color="#FAEBD7"/>
+            </WrapPanel.Background>
+            <WrapPanel Margin="0,15,0,0">
+                <Label Width="150">Nume + Id Profesor:</Label>
+                <ComboBox x:Name="profesoriCB" Width="200" ItemsSource="{Binding Profesori}"></ComboBox>
+            </WrapPanel>
+            <WrapPanel Margin="0,15,0,0">
+                <Label Width="150">Nume + Id Diriginte:</Label>
+                <ComboBox x:Name="dirigintiCB" Width="200" ItemsSource="{Binding Diriginti}"></ComboBox>
+            </WrapPanel>
+            <WrapPanel Margin="0,15,0,0">
+                <Label Width="150">Nume + Id Elev:</Label>
+                <ComboBox x:Name="eleviCB" Width="200" ItemsSource="{Binding Elevi}"></ComboBox>
+            </WrapPanel>
+            <WrapPanel Margin="0,15,0,0">
+                <Label Width="150">Nume + Id Materie:</Label>
+                <ComboBox x:Name="materiiCB" Width="200" ItemsSource="{Binding Materii}"></ComboBox>
+            </WrapPanel>
+        </WrapPanel>
+    </DockPanel>
+</Window>

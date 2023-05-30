@@ -1,0 +1,63 @@
+﻿<Window x:Class="PlatformaEducationala.Views.ProfesoriMedii"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ctx="clr-namespace:PlatformaEducationala.ViewModels"
+        xmlns:convert="clr-namespace:PlatformaEducationala.Converters"
+        xmlns:local="clr-namespace:PlatformaEducationala.Views"
+        mc:Ignorable="d"
+        Title="ProfesoriMedii" Height="358" Width="421">
+    <Window.DataContext>
+        <ctx:MedieVM/>
+    </Window.DataContext>
+    <StackPanel>
+        <StackPanel.Resources>
+            <convert:ConvertorMedie x:Key="medieConvert"/>
+        </StackPanel.Resources>
+        <DataGrid x:Name="mediiDG" Margin="0,15,0,0" AutoGenerateColumns="False"
+                  Height="250" IsReadOnly="True"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id Elev" Binding="{Binding IdElev}"/>
+                <DataGridTextColumn Header="Id Materie" Binding="{Binding IdMaterie}"/>
+                <DataGridTextColumn Header="Nota" Binding="{Binding Nota}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel>
+            <Button Content="Calculare Medie" Margin="15" Width="100" Height="30"
+                    Click="CalculareMedieButton" PreviewMouseDown="InsertButtonPreviewMouseDown">
+            </Button>
+            <ComboBox Name="txtIdElev" Width="100" ItemsSource="{Binding ListaIdElevi}"
+          SelectedValuePath="Value">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="Key"/>
+                                    <Binding Path="Value"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <ComboBox Name="txtIdMaterie" Width="100" ItemsSource="{Binding ListaIdElevi}"
+          SelectedValuePath="Value">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0} - {1}">
+                                    <Binding Path="Key"/>
+                                    <Binding Path="Value"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </WrapPanel>
+    </StackPanel>
+</Window>
